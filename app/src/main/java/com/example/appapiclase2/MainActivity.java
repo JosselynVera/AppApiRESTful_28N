@@ -8,6 +8,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.w3c.dom.Text;
 
@@ -46,5 +53,31 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
     public void processFinish(String result) throws JSONException {
         TextView txtRespuesta = (TextView)findViewById(R.id.txtRespuesta);
         txtRespuesta.setText(result);
+    }
+
+    public void LoginViewVoley(View view)
+    {
+        EditText txtNombre = (EditText)findViewById(R.id.txtNombre);
+        EditText txtContraseña = (EditText)findViewById(R.id.txtContraseña);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url= "https://revistas.uteq.edu.ec/ws/login.php?usr=" + txtNombre.getText().toString() +
+                "&pass=" + txtContraseña.getText().toString();
+        TextView txtRespuesta = (TextView)findViewById(R.id.txtRespuesta);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        txtRespuesta.setText("Response is: "+ response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        txtRespuesta.setText("ERROR" + error.getMessage());
+                    }
+                });
+        queue.add(stringRequest);
+
     }
 }

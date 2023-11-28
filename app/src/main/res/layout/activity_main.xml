@@ -60,11 +60,23 @@
         android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="209dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="215dp"
         android:onClick="Login"
         android:text="Ingresar" />
+
+    <Button
+        android:id="@+id/btLoginVoley"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="68dp"
+        android:onClick="LoginViewVoley"
+        android:text="LoginViewVoley" />
 
     <TextView
         android:id="@+id/txtRespuesta"
@@ -87,4 +99,5 @@
         android:layout_marginEnd="53dp"
         android:ems="10"
         android:inputType="textPassword" />
+
 </RelativeLayout>
